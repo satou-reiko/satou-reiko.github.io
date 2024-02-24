@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>thankspage</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter&family=Zen+Kaku+Gothic+Antique&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/jquery.bxslider.css" />
+
+    <link rel="stylesheet" href="../css/hamburgers.css" />
+  </head>
+  <body id="top">
+    <header>
+      <h1>リストランテ・イル・ソーニョ</h1>
+      <p class="tag-line">心ときめく、夢のようなイタリア料理</p>
+    </header>
+
+    <p class="hamburger hamburger--stand" id="btn">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </p>
+
+    <nav id="g-nav">
+      <ul>
+        <li><a href="../" data-en="TOP">トップ</a></li>
+        <li><a href="../index.html#news" data-en="NEWS">ニュース</a></li>
+        <li><a href="../index.html#menu" data-en="MENU">メニュー</a></li>
+        <li><a href="../index.html#video" data-en="VIDEO">動画</a></li>
+        <li><a href="../index.html#shop" data-en="SHOP">店舗情報</a></li>
+        <li><a href="index.html#form" data-en="RESERVE">ご予約</a></li>
+      </ul>
+    </nav>
+    <div class="bxslider">
+      <li><img src="../img/main-4.webp" alt="" /></li>
+      <li><img src="../img/main-2.webp" alt="" /></li>
+      <li><img src="../img/main-1-1.webp" alt="" /></li>
+    </div>
+
+    <main>
+     <div class="thanks-text">
+        <h2>ご予約ありがとうございました。</h2>
+        <p>ご来店をおまちしております。</p>
+     </div>
+
+
+
+    </main>
+
+    <footer>
+      <p>
+        <small
+          >&copy;<span id="this-year"></span>リストランテ・イル・ソーニョ</small
+        >
+      </p>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../js/jquery.bxslider.js"></script>
+
+    <script>
+      $(function () {
+        //mainビジュアル用に
+        $(".bxslider").bxSlider({
+          mode: "fade",
+          auto: true,
+          controls: false,
+          pager: false, //画像の下の黒丸消す
+        });
+        //外部ファイル呼び出すJSのbxsliderよりコピペしてくる部分3か所
+        $("#news-list").load("news.txt");
+        $(".bxslider2").bxSlider({
+          ticker: true,
+          speed: 50000,
+          minSlides: 2,
+          maxSlides: 6,
+          slideWidth: 320,
+        });
+
+        /*   let fullYear = new Date().getFullyear();
+        fullYear = 2025;
+        if (fullYear > 2024) {
+          $("#this-year").text("2024-" + fullYear);
+        } else {
+          $("#this-year").text(fullYear);
+        }
+ */
+        $("#g-nav").hide(); //ボタンを隠す
+
+        //ハンバーガーボタン
+        //#btnをon.clickしたら
+        $("#btn").on("click", function () {
+          $(this).toggleClass("is-active");
+          $("#g-nav").fadeToggle(200);
+        });
+        //#g-nav aをon.clickしたら
+        $("#g-nav a").on("click", function () {
+          $("#g-nav").fadeOut(200);
+          $("#btn").removeClass("is-active");
+        });
+      });
+    </script>
+  </body>
+</html>
